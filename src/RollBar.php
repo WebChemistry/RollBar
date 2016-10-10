@@ -14,6 +14,9 @@ class RollBar {
 	private $enable = FALSE;
 
 	public function __construct($accessToken, $logging, $enable, array $config = []) {
+		if (!defined('BASE_EXCEPTION')) {
+			define('BASE_EXCEPTION', version_compare(phpversion(), '7.0', '<')? '\Exception': '\Throwable');
+		}
 		\Rollbar::init(['access_token' => $accessToken] + $config, false, false, false);
 		if (!$enable) {
 			return;
@@ -45,7 +48,10 @@ class RollBar {
 		$this->flush();
 	}
 
-	public function exceptionHandler(\Exception $e, $exit = TRUE) {
+	public function exceptionHandler($e, $exit = TRUE) {
+		if (!is_a($e, BASE_EXCEPTION)) {
+			throw new \Exception(sprintf('Report exception requires an instance of %s.', BASE_EXCEPTION ));
+		}
 		$this->exception($e);
 		Debugger::exceptionHandler($e, $exit);
 	}
@@ -63,7 +69,10 @@ class RollBar {
 		return \Rollbar::report_php_error($errno, $errstr, $errfile, $errline);
 	}
 
-	public function exception(\Exception $exception, $extraData = NULL, $payloadData = NULL) {
+	public function exception($exception, $extraData = NULL, $payloadData = NULL) {
+		if (!is_a($exception, BASE_EXCEPTION)) {
+			throw new \Exception(sprintf('Report exception requires an instance of %s.', BASE_EXCEPTION ));
+		}
 		\Rollbar::report_exception($exception, $extraData, $payloadData);
 	}
 
