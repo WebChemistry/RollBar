@@ -11,4 +11,5 @@ class Logger implements \iRollbarLogger {
 	public function log($level, $msg) {
 		Debugger::getLogger()->log($msg, self::LEVEL);
 	}
+
 }

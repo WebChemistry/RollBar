@@ -1,12 +1,23 @@
 {
-  "name": "webchemistry/rollbar",
-  "type": "library",
-  "description": "Rollbar integration for Nette framework",
-  "keywords": ["nette", "webchemistry", "rollbar"],
-  "autoload": {
-    "classmap": ["src/"]
-  },
-  "require": {
-    "rollbar/rollbar": "~0.15"
-  }
+	"name": "webchemistry/rollbar",
+	"type": "library",
+	"description": "Rollbar integration for Nette framework",
+	"keywords": [
+		"nette",
+		"webchemistry",
+		"rollbar"
+	],
+	"autoload": {
+		"classmap": [
+			"src/"
+		]
+	},
+	"require": {
+		"php": ">= 5.5",
+		"rollbar/rollbar": "~0.15"
+	},
+	"require-dev": {
+		"nette/application": "^2.4",
+		"nette/di": "^2.4"
+	}
 }

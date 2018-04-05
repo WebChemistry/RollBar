@@ -2,6 +2,10 @@
 
 ## Instalation
 
+```
+composer require webchemistry/rollbar
+```
+
 Neon:
 ```yaml
 extensions:
