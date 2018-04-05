@@ -7,7 +7,7 @@ use Nette\DI\CompilerExtension;
 use WebChemistry\RollBar\RollBar;
 use Nette\Application\Application;
 
-class Extension extends CompilerExtension {
+class RollBarExtension extends CompilerExtension {
 
 	/** @var array */
 	private $defaults = [
